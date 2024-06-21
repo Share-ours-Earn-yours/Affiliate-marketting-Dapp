@@ -1,10 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const Link = require("../models/link");
-const { nanoid } = require("nanoid");
+
+async function getNanoid() {
+  const { nanoid } = await import("nanoid");
+  return nanoid;
+}
 
 router.post("/addLink", async (req, res) => {
   const { url } = req.body;
+  const nanoid = await getNanoid();
   const shortLink = nanoid(8);
 
   const newLink = new Link({ url, shortLink });
@@ -43,6 +48,7 @@ router.get("/links/:linkId", async (req, res) => {
 
 router.post("/createShortLink", async (req, res) => {
   const { url } = req.body;
+  const nanoid = await getNanoid();
   const shortLink = nanoid(8);
 
   const newLink = new Link({ url, shortLink });
