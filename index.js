@@ -13,7 +13,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 mongoose
-  .connect(process.env.MONGODB_URI)
+  .connect(
+    "mongodb+srv://vairamuthu:vairamuthu@cluster0.2qcddvx.mongodb.net/affiliateMarketing"
+  )
   .then(() => {
     console.log("Connected to MongoDB");
   })
